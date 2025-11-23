@@ -36,12 +36,12 @@ See `TESTING.md` for curl commands to test all routes. All 5 basic routes are wo
 - `PUT /new-incident` - add new incident to database
 - `DELETE /remove-incident` - remove incident from database
 
-## Work Distribution
+## Status
 
-**Basic Implementation (30/40 pts - DONE):**
-- Eli: `/codes` GET route, project setup, .gitignore, package.json
-- Caiden: `/incidents` GET route, `/remove-incident` DELETE route
-- Charlotte: `/neighborhoods` GET route, `/new-incident` PUT route
+**Basic Implementation (30/40 pts - COMPLETE):**
+- All 5 core routes implemented and tested
+- Database setup and connected
+- Project structure and configuration complete
 
 ## What's Left to Do (10 pts)
 

@@ -57,11 +57,10 @@ function dbRun(query, params) {
  ***   REST REQUEST HANDLERS                                      *** 
  ********************************************************************/
 // GET request handler for crime codes
-// Implemented by: Eli
 app.get('/codes', (req, res) => {
     console.log(req.query); // query object (key-value pairs after the ? in the url)
     
-    // TODO (Caiden/Charlotte): Add query param support for ?code=110,700 (2 pts)
+    // TODO: Add query param support for ?code=110,700 (2 pts)
     // Split req.query.code by comma, add WHERE code IN (...) to SQL
     
     // get all codes from db
@@ -76,11 +75,10 @@ app.get('/codes', (req, res) => {
 });
 
 // GET request handler for neighborhoods
-// Implemented by: Charlotte
 app.get('/neighborhoods', (req, res) => {
     console.log(req.query); // query object (key-value pairs after the ? in the url)
     
-    // TODO (Caiden/Charlotte): Add query param support for ?id=11,14 (2 pts)
+    // TODO: Add query param support for ?id=11,14 (2 pts)
     // Split req.query.id by comma, add WHERE neighborhood_number IN (...) to SQL
     
     // get all neighborhoods from db
@@ -95,11 +93,10 @@ app.get('/neighborhoods', (req, res) => {
 });
 
 // GET request handler for crime incidents
-// Implemented by: Caiden
 app.get('/incidents', (req, res) => {
     console.log(req.query); // query object (key-value pairs after the ? in the url)
     
-    // TODO (Caiden/Charlotte): Add query param support (6 pts total):
+    // TODO: Add query param support (6 pts total):
     // - ?start_date=2019-09-01 (add WHERE date_time >= ?)
     // - ?end_date=2019-10-31 (add WHERE date_time <= ?)
     // - ?code=110,700 (add WHERE code IN (...))
@@ -121,7 +118,6 @@ app.get('/incidents', (req, res) => {
 });
 
 // PUT request handler for new crime incident
-// Implemented by: Charlotte
 app.put('/new-incident', (req, res) => {
     console.log(req.body); // uploaded data
     
@@ -151,7 +147,6 @@ app.put('/new-incident', (req, res) => {
 });
 
 // DELETE request handler for new crime incident
-// Implemented by: Caiden
 app.delete('/remove-incident', (req, res) => {
     console.log(req.body); // uploaded data
     
