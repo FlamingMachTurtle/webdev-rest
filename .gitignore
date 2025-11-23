@@ -1,6 +1,10 @@
 # Database directory
 db/
 
+# Project info files
+info.md
+projectinfo.md
+
 # Logs
 logs
 *.log
