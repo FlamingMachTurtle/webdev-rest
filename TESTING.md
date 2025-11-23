@@ -1,27 +1,27 @@
-# Testing the REST API
+# testing
 
-Server should be running on port 8000. Start with `node rest_server.mjs`
+run the server: `node rest_server.mjs` (port 8000)
 
-## Test GET Routes
+## GET routes
 
-**Get all crime codes:**
+**codes:**
 ```bash
 curl http://localhost:8000/codes
 ```
 
-**Get all neighborhoods:**
+**neighborhoods:**
 ```bash
 curl http://localhost:8000/neighborhoods
 ```
 
-**Get last 1000 incidents:**
+**incidents:**
 ```bash
 curl http://localhost:8000/incidents
 ```
 
-## Test PUT Route (Add Incident)
+## PUT route
 
-**Add new incident:**
+**add incident:**
 ```bash
 curl -X PUT http://localhost:8000/new-incident \
   -H "Content-Type: application/json" \
@@ -37,9 +37,9 @@ curl -X PUT http://localhost:8000/new-incident \
   }'
 ```
 
-Should return: `OK`
+returns `OK`
 
-**Try adding same case_number again (should fail):**
+**try duplicate (should fail with error):**
 ```bash
 curl -X PUT http://localhost:8000/new-incident \
   -H "Content-Type: application/json" \
@@ -55,36 +55,29 @@ curl -X PUT http://localhost:8000/new-incident \
   }'
 ```
 
-Should return: `Case number already exists` (status 500)
+returns `Case number already exists` (500)
 
-## Test DELETE Route (Remove Incident)
+## DELETE route
 
-**Delete the test incident:**
+**remove incident:**
 ```bash
 curl -X DELETE http://localhost:8000/remove-incident \
   -H "Content-Type: application/json" \
   -d '{"case_number": "TEST12345"}'
 ```
 
-Should return: `OK`
+returns `OK`
 
-**Try deleting again (should fail):**
+**try again (should fail):**
 ```bash
 curl -X DELETE http://localhost:8000/remove-incident \
   -H "Content-Type: application/json" \
   -d '{"case_number": "TEST12345"}'
 ```
 
-Should return: `Case number does not exist` (status 500)
+returns `Case number does not exist` (500)
 
-## Expected Results
+---
 
-All 5 routes should work:
-- GET /codes - returns JSON array of codes
-- GET /neighborhoods - returns JSON array of neighborhoods
-- GET /incidents - returns JSON array with date/time split
-- PUT /new-incident - adds to DB, rejects duplicates
-- DELETE /remove-incident - removes from DB, rejects non-existent
-
-This gets you 30/40 points (C-grade). Query parameters worth 10 more points.
+all 5 routes working = 30/40 pts. still need query params for the last 10.
 
