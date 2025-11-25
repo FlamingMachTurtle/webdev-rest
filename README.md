@@ -1,6 +1,6 @@
 # St. Paul Crime REST API
 
-REST server for St. Paul crime data
+REST server for St. Paul crime data using Node.js, Express, and SQLite3
 
 ## Team
 - Eli (author)
@@ -26,30 +26,38 @@ Server runs on port 8000
 
 ## Testing
 
-See `TESTING.md` for curl commands to test all routes. All 5 basic routes are working and tested.
+See `TESTING.md` for curl commands to test all routes. All routes are fully implemented and tested.
 
 ## API Routes
 
-- `GET /codes` - get all crime codes
-- `GET /neighborhoods` - get all neighborhoods  
-- `GET /incidents` - get last 1000 incidents
-- `PUT /new-incident` - add new incident to database
-- `DELETE /remove-incident` - remove incident from database
+### Basic Routes
+- `GET /codes` - get all crime codes (ordered by code number)
+- `GET /neighborhoods` - get all neighborhoods (ordered by id)
+- `GET /incidents` - get incidents with date/time split (ordered by most recent, default limit 1000)
+- `PUT /new-incident` - add new incident to database (rejects duplicates)
+- `DELETE /remove-incident` - remove incident from database (rejects non-existent)
+
+### Query Parameters
+
+**GET /codes**
+- `?code=110,700` - filter by specific codes
+
+**GET /neighborhoods**
+- `?id=11,14` - filter by specific neighborhood ids
+
+**GET /incidents**
+- `?start_date=2019-09-01` - filter by start date
+- `?end_date=2019-10-31` - filter by end date
+- `?code=110,700` - filter by specific codes
+- `?grid=38,65` - filter by police grid numbers
+- `?neighborhood=11,14` - filter by neighborhood ids
+- `?limit=50` - set max number of results (default 1000)
+
+All query parameters can be combined.
 
 ## Status
 
-**Basic Implementation (30/40 pts - COMPLETE):**
-- All 5 core routes implemented and tested
-- Database setup and connected
-- Project structure and configuration complete
+**Full Implementation Complete - 40/40 pts**
 
-## Still TODO (10 pts)
-
-Need to add query parameter filtering to the 3 GET routes. See TODOs in rest_server.mjs
-
-- `/codes` - filter by code param (2 pts)
-- `/neighborhoods` - filter by id param (2 pts)
-- `/incidents` - add filters for dates, codes, grids, neighborhoods, and limit (6 pts)
-
-Check NOTES.md for examples on how to do the filtering. Pretty straightforward, just modify the SQL queries based on req.query params.
+All 5 core routes with full query parameter support implemented and tested.
 
