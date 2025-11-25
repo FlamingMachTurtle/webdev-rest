@@ -12,7 +12,7 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/YOUR_USERNAME/webdev-rest"
+        "url": "https://github.com/FlamingMachTurtle/webdev-rest"
     },
     "dependencies": {
         "express": "^4.18.2",
