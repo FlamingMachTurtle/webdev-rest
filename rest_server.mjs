@@ -60,9 +60,6 @@ function dbRun(query, params) {
 app.get('/codes', (req, res) => {
     console.log(req.query); // query object (key-value pairs after the ? in the url)
     
-    // TODO: Add query param support for ?code=110,700 (2 pts)
-    // Split req.query.code by comma, add WHERE code IN (...) to SQL
-    
     // get all codes from db
     let query = 'SELECT code, incident_type as type FROM Codes';
     let params = [];
@@ -85,9 +82,6 @@ app.get('/codes', (req, res) => {
 // GET request handler for neighborhoods
 app.get('/neighborhoods', (req, res) => {
     console.log(req.query); // query object (key-value pairs after the ? in the url)
-    
-    // TODO: Add query param support for ?id=11,14 (2 pts)
-    // Split req.query.id by comma, add WHERE neighborhood_number IN (...) to SQL
     
     // get all neighborhoods from db
     let query = 'SELECT neighborhood_number as id, neighborhood_name as name FROM Neighborhoods';
