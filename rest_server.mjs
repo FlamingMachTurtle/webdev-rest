@@ -106,60 +106,58 @@ app.get('/neighborhoods', (req, res) => {
 app.get('/incidents', (req, res) => {
     console.log(req.query); // query object (key-value pairs after the ? in the url)
     
-    // Build dynamic query
+    // build query based on params
     let query = `SELECT case_number, DATE(date_time) as date, TIME(date_time) as time, 
                  code, incident, police_grid, neighborhood_number, block 
                  FROM Incidents`;
     let conditions = [];
     let params = [];
     
-    // ✓ ?start_date=2019-09-01 (add WHERE date_time >= ?)
+    // start date filter
     if (req.query.start_date) {
         conditions.push('date_time >= ?');
         params.push(req.query.start_date + 'T00:00:00');
     }
     
-    // ✓ ?end_date=2019-10-31 (add WHERE date_time <= ?)
+    // end date filter
     if (req.query.end_date) {
         conditions.push('date_time <= ?');
         params.push(req.query.end_date + 'T23:59:59');
     }
     
-    // ✓ ?code=110,700 (add WHERE code IN (...))
+    // code filter
     if (req.query.code) {
         let codes = req.query.code.split(',');
         conditions.push(`code IN (${codes.map(() => '?').join(',')})`);
         params.push(...codes);
     }
     
-    // ✓ ?grid=38,65 (add WHERE police_grid IN (...))
+    // grid filter
     if (req.query.grid) {
         let grids = req.query.grid.split(',');
         conditions.push(`police_grid IN (${grids.map(() => '?').join(',')})`);
         params.push(...grids);
     }
     
-    // ✓ ?neighborhood=11,14 (add WHERE neighborhood_number IN (...))
+    // neighborhood filter
     if (req.query.neighborhood) {
         let neighborhoods = req.query.neighborhood.split(',');
         conditions.push(`neighborhood_number IN (${neighborhoods.map(() => '?').join(',')})`);
         params.push(...neighborhoods);
     }
     
-    // Add WHERE clause if we have any conditions
+    // add WHERE if needed
     if (conditions.length > 0) {
         query += ' WHERE ' + conditions.join(' AND ');
     }
     
-    // Add ORDER BY
     query += ' ORDER BY date_time DESC';
     
-    // ✓ ?limit=50 (change LIMIT value, default 1000)
+    // limit
     let limit = parseInt(req.query.limit) || 1000;
     query += ' LIMIT ?';
     params.push(limit);
     
-    // Execute query
     db.all(query, params, (err, rows) => {
         if (err) {
             res.status(500).send(err);
