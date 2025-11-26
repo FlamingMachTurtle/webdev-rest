@@ -53,11 +53,11 @@ See `TESTING.md` for curl commands to test all routes. All routes are fully impl
 - `?neighborhood=11,14` - filter by neighborhood ids
 - `?limit=50` - set max number of results (default 1000)
 
-All query parameters can be combined.
+you can combine the params
 
 ## Status
 
-**Full Implementation Complete - 40/40 pts**
+**Full Implementation - 40/40 pts**
 
-All 5 core routes with full query parameter support implemented and tested.
+all 5 routes with query parameter support done
 
