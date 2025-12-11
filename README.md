@@ -1,3 +1,22 @@
+## QUICK START (For Team Members)
+
+```bash
+# 1. Clone and install
+git clone https://github.com/FlamingMachTurtle/webdev-rest
+cd webdev-rest
+npm install
+
+# 2. Download database from https://github.com/tmarrinan/webdev-rest
+mkdir db 
+mv ~/Downloads/stpaul_crime.sqlite3 db/
+
+# 3. Run server
+node rest_server.mjs
+```
+
+Server runs at `http://localhost:8000` - See full docs below.
+
+---
 # St. Paul Crime REST API
 
 A RESTful web server providing access to St. Paul crime incident data using Node.js, Express, and SQLite3.
@@ -73,14 +92,6 @@ curl http://localhost:8000/codes
 
 ---
 
-## Team
-
-- **Eli** (Lead Developer)
-- **Caiden** (Contributor)
-- **Charlotte** (Contributor)
-
----
-
 ## Features
 
 - **5 Complete API Routes** (GET, PUT, DELETE operations)
@@ -103,13 +114,13 @@ http://localhost:8000
 
 ### Routes Overview
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/codes` | Get all crime codes |
-| GET | `/neighborhoods` | Get all neighborhoods |
-| GET | `/incidents` | Get crime incidents |
-| PUT | `/new-incident` | Add a new incident |
-| DELETE | `/remove-incident` | Remove an incident |
+| Method | Endpoint           | Description           |
+| ------ | ------------------ | --------------------- |
+| GET    | `/codes`           | Get all crime codes   |
+| GET    | `/neighborhoods`   | Get all neighborhoods |
+| GET    | `/incidents`       | Get crime incidents   |
+| PUT    | `/new-incident`    | Add a new incident    |
+| DELETE | `/remove-incident` | Remove an incident    |
 
 ---
 
