@@ -1,9 +1,8 @@
-# Database directory
+# Database directory (user must download separately)
 db/
 
-# Project info files
-info.md
-projectinfo.md
+# macOS files
+.DS_Store
 
 # Logs
 logs
