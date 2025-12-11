@@ -1,68 +1,100 @@
-# 🚔 St. Paul Crime REST API
+# St. Paul Crime REST API
 
 A RESTful web server providing access to St. Paul crime incident data using Node.js, Express, and SQLite3.
 
-## 👥 Team
-
-- **Eli** (Lead Developer)
-- **Caiden** (Contributor)
-- **Charlotte** (Contributor)
-
-## ✨ Features
-
-- ✅ **5 Complete API Routes** (GET, PUT, DELETE operations)
-- ✅ **Advanced Query Parameters** for filtering and pagination
-- ✅ **CORS Enabled** - Ready for cross-origin requests
-- ✅ **SQLite Database** with St. Paul crime incident data
-- ✅ **Input Validation** - Prevents duplicates and invalid operations
-- ✅ **Full Test Coverage** - See [TESTING.md](TESTING.md)
-
-**Score: 40/40 points** - Full implementation complete!
-
 ---
 
-## 🚀 Quick Start
+## INSTALLATION AND SETUP
 
-### Prerequisites
+Follow these steps exactly to get the server running:
 
-- Node.js (v14 or higher)
-- npm (comes with Node.js)
+### STEP 1: Clone the Repository
 
-### Installation
+```bash
+git clone https://github.com/FlamingMachTurtle/webdev-rest
+cd webdev-rest
+```
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/FlamingMachTurtle/webdev-rest
-   cd webdev-rest
-   ```
+### STEP 2: Install Dependencies
 
-2. **Install dependencies:**
 ```bash
 npm install
 ```
 
-3. **Download the database:**
-   - Download `stpaul_crime.sqlite3` from [here](https://github.com/tmarrinan/webdev-rest)
-   - Create a `db/` folder if it doesn't exist
-   - Place the database file in the `db/` folder
+This will install:
+- express (web framework)
+- sqlite3 (database driver)
+- cors (cross-origin support)
 
-### Running the Server
+### STEP 3: Download and Setup Database
+
+**IMPORTANT:** The database file is NOT included in this repository. You must download it separately.
+
+1. Download `stpaul_crime.sqlite3` from: https://github.com/tmarrinan/webdev-rest
+2. Create a `db` folder in the project root (if it doesn't exist):
+   ```bash
+   mkdir db
+   ```
+3. Move the downloaded database file into the `db` folder:
+   ```bash
+   mv ~/Downloads/stpaul_crime.sqlite3 db/
+   ```
+
+Your folder structure should look like this:
+```
+webdev-rest/
+├── db/
+│   └── stpaul_crime.sqlite3    <-- Database file goes here
+├── rest_server.mjs
+├── package.json
+└── ...
+```
+
+### STEP 4: Start the Server
 
 ```bash
 node rest_server.mjs
 ```
 
-**Server will start on:** `http://localhost:8000`
+### STEP 5: Verify It's Running
 
-You should see:
+You should see this output:
 ```
 Now listening on port 8000
 Now connected to stpaul_crime.sqlite3
 ```
 
+The server is now running at: **http://localhost:8000**
+
+Test it by opening this URL in your browser or running:
+```bash
+curl http://localhost:8000/codes
+```
+
 ---
 
-## 📚 API Documentation
+## Team
+
+- **Eli** (Lead Developer)
+- **Caiden** (Contributor)
+- **Charlotte** (Contributor)
+
+---
+
+## Features
+
+- **5 Complete API Routes** (GET, PUT, DELETE operations)
+- **Advanced Query Parameters** for filtering and pagination
+- **CORS Enabled** - Ready for cross-origin requests
+- **SQLite Database** with St. Paul crime incident data
+- **Input Validation** - Prevents duplicates and invalid operations
+- **Full Test Coverage** - See [TESTING.md](TESTING.md)
+
+**Score: 40/40 points** - Full implementation complete!
+
+---
+
+## API Documentation
 
 ### Base URL
 ```
@@ -81,9 +113,9 @@ http://localhost:8000
 
 ---
 
-## 🔍 Detailed Route Information
+## Detailed Route Information
 
-### 1. GET `/codes`
+### 1. GET /codes
 
 Returns all crime incident codes and their types (ordered by code number).
 
@@ -110,7 +142,7 @@ curl http://localhost:8000/codes?code=110,700
 
 ---
 
-### 2. GET `/neighborhoods`
+### 2. GET /neighborhoods
 
 Returns all neighborhood IDs and names (ordered by ID).
 
@@ -137,7 +169,7 @@ curl http://localhost:8000/neighborhoods?id=11,14
 
 ---
 
-### 3. GET `/incidents`
+### 3. GET /incidents
 
 Returns crime incidents with date and time separated (ordered by most recent, default limit: 1000).
 
@@ -185,7 +217,7 @@ curl "http://localhost:8000/incidents?start_date=2019-10-01&neighborhood=11,14&g
 
 ---
 
-### 4. PUT `/new-incident`
+### 4. PUT /new-incident
 
 Add a new crime incident to the database.
 
@@ -225,7 +257,7 @@ curl -X PUT http://localhost:8000/new-incident \
 
 ---
 
-### 5. DELETE `/remove-incident`
+### 5. DELETE /remove-incident
 
 Remove a crime incident from the database.
 
@@ -249,13 +281,13 @@ curl -X DELETE http://localhost:8000/remove-incident \
 
 ---
 
-## 🧪 Testing
+## Testing
 
 See [TESTING.md](TESTING.md) for comprehensive testing examples and curl commands.
 
 ---
 
-## 🌐 CORS Support
+## CORS Support
 
 This server has CORS enabled, allowing cross-origin requests from any domain. Perfect for:
 - Frontend applications (React, Vue, Angular, etc.)
@@ -272,7 +304,7 @@ fetch('http://localhost:8000/incidents?limit=10')
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 webdev-rest/
@@ -291,7 +323,7 @@ webdev-rest/
 
 ---
 
-## 🗄️ Database Schema
+## Database Schema
 
 ### Tables
 
@@ -314,7 +346,7 @@ webdev-rest/
 
 ---
 
-## 🔧 Dependencies
+## Dependencies
 
 - **express** (^4.18.2) - Web framework
 - **sqlite3** (^5.1.6) - SQLite database driver
@@ -322,24 +354,24 @@ webdev-rest/
 
 ---
 
-## 📝 Assignment Status
+## Assignment Status
 
-✅ **Full Implementation Complete - 40/40 points**
+**Full Implementation Complete - 40/40 points**
 
 ### Features Implemented:
 
 **Basic Implementation (30 pts):**
-- ✅ Package.json properly configured
-- ✅ GET /codes route
-- ✅ GET /neighborhoods route
-- ✅ GET /incidents route
-- ✅ PUT /new-incident route with validation
-- ✅ DELETE /remove-incident route with validation
+- Package.json properly configured
+- GET /codes route
+- GET /neighborhoods route
+- GET /incidents route
+- PUT /new-incident route with validation
+- DELETE /remove-incident route with validation
 
 **Advanced Features (10 pts):**
-- ✅ GET /codes with code filtering (2 pts)
-- ✅ GET /neighborhoods with id filtering (2 pts)
-- ✅ GET /incidents with all query parameters (6 pts):
+- GET /codes with code filtering (2 pts)
+- GET /neighborhoods with id filtering (2 pts)
+- GET /incidents with all query parameters (6 pts):
   - start_date filtering
   - end_date filtering
   - code filtering
@@ -349,26 +381,26 @@ webdev-rest/
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 This is a team project by Eli, Caiden, and Charlotte for a web development course.
 
 ---
 
-## 📄 License
+## License
 
 MIT License - see [LICENSE](LICENSE) file for details.
 
 ---
 
-## 🔗 Links
+## Links
 
 - **Repository:** https://github.com/FlamingMachTurtle/webdev-rest
 - **Data Source:** [St. Paul Crime Incident Report](https://information.stpaul.gov/datasets/stpaul::crime-incident-report/about)
 
 ---
 
-## 💡 Tips
+## Tips
 
 1. **Make a backup of the database** before testing PUT/DELETE operations
 2. **Use query parameters** to filter large result sets
@@ -377,4 +409,4 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ---
 
-**Made with ❤️ for Web Development Course**
+**Made with care for Web Development Course**
